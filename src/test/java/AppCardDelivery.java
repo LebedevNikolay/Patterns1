@@ -1,9 +1,9 @@
-package ru.netology.app_card_delivery2;
+package ru.netology.delivery.data;
 
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.model.DataGenerator;
+import model.DataGenerator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,14 +37,14 @@ public class AppCardDelivery {
 
         $("label[data-test-id='agreement']").click();
         $$("button").find(exactText("Запланировать")).click();
-        $("div[data-test-id='success-notification'] button").waitUntil(visible, 15000).click();
+        $("div[data-test-id='success-notification'] button").wait(visible, 15000).click();
 
         $("span[data-test-id='date'] input.input__control").sendKeys(Keys.chord(Keys.CONTROL, "a") + Keys.DELETE);
         $("span[data-test-id='date'] input.input__control").setValue(date2);
 
         $$("button").find(exactText("Запланировать")).click();
-        $("div[data-test-id='replan-notification'] button").waitUntil(visible, 15000).click();
-        $("div.notification__content").waitUntil(text("Встреча успешно запланирована на " + date2),
+        $("div[data-test-id='replan-notification'] button").wait(visible, 15000).click();
+        $("div.notification__content").wait(text("Встреча успешно запланирована на " + date2),
                 15000);
     }
 }
