@@ -9,8 +9,7 @@ import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -47,7 +46,7 @@ public class DeliveryTest {
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
         $(Selectors.byText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__content")
-                .shouldHave(exactText("У вас уже заплонирована встреча на другую дату. Перепланировать?"))
+                .shouldHave(text("У вас уже заплонирована встреча на другую дату. Перепланировать?"))
                 .shouldBe(visible);
 
         $("[data-test-id='replan-notification'] button").click();
