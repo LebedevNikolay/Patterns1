@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    //    id "io.freefair.lombok" version "8.6"
 }
 
 group 're.netology'
@@ -15,25 +14,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.codeborne:selenide:6.17.2'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.38'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
+
     testImplementation 'com.codeborne:selenide:6.17.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.24'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
 }
 
 test {
     useJUnitPlatform()
-
-    systemProperty 'selenide.headless', System.getProperty('selenide.headless', 'true')
-    systemProperty 'chromeoptions.prefs', System.getProperty('chromeoptions.prefs', "profile.password_manager_leak_detection=false")
-}
-
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
